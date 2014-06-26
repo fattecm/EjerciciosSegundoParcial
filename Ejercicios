@@ -43,3 +43,32 @@ function EjerSeis($cadena){
 }    
 
 EjerSeis("esta es una prueba")."<br>";
+echo "<hr>\n";
+
+/*EJERCICIO 9
+
+ * 
+ *  */
+
+
+function EjerNueve($num1){
+    $ban=false;
+    $result=0;
+    if($num1<=0){
+        echo "Debe introducir número positivo o mayor que cero";  
+    }else{     
+            for($cont=1; $cont<=$num1; $cont++){
+                $result=$cont*$cont;
+                if($result==$num1){
+                    $ban=true;
+                }
+            }
+        return $ban;    
+    }  
+}
+
+var_dump(EjerNueve(25));
+var_dump(EjerNueve(1));
+var_dump(EjerNueve(16));
+var_dump(EjerNueve(14));
+echo "<hr>\n";
