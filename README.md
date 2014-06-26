@@ -4,8 +4,7 @@ EjerciciosSegundoParcial
 24 Ejercicios de Web
 
 
-1.- Mira esta serie: 7, 6, 8, 4, 9, 2, 10, 0, 11, -2, ... Cree una función que recibe dos enteros: x e y. Si alguno de ellos es 0 o negativo, o si son mayores que 255, la función debe devolver -1 De lo contrario, la función debe devolver la suma de los elementos X e Y de la serie. Por ejemplo: Si la función recibe x = 1, y = 3, se debería devolver: 15 (Debido a que la suma de la primera, más el tercer argumento es 7 +8 = 15).. Si la función recibe x = 8, y = 9, es conveniente devolver 11. (Debido a que la suma de la octava más el elemento noveno es 0 11 = 11). La función recibirá 2 enteros, y devuelve un entero.
-
+1. Mira esta serie: 7, 6, 8, 4, 9, 2, 10, 0, 11, -2, ... Cree una función que recibe dos enteros: x e y. Si alguno de ellos es 0 o negativo, o si son mayores que 255, la función debe devolver -1 De lo contrario, la función debe devolver la suma de los elementos X e Y de la serie. Por ejemplo: Si la función recibe x = 1, y = 3, se debería devolver: 15 (Debido a que la suma de la primera, más el tercer argumento es 7 +8 = 15).. Si la función recibe x = 8, y = 9, es conveniente devolver 11. (Debido a que la suma de la octava más el elemento noveno es 0 11 = 11). La función recibirá 2 enteros, y devuelve un entero.
 2. Mira esta serie: 2, 2, 4, 12, 48, ... la semilla de esta serie fue el número 2 Mira esta serie:. 3, 3, 6, 18, 72, ... la semilla de esta serie fue el número 3. Cree una función que recibe dos enteros: x, y y. Si alguno de ellos es 0 o negativo, o si son mayores que 255, la función debe devolver -1 La función debe devolver el elemento y de las series generadas por x. Por ejemplo, si la serie recibe x = 3, y = 4, es conveniente devolver 72, porque 72 es el cuarto elemento de la serie generado cuando x = 3. La función recibirá 2 enteros, y devuelve un entero. 
 
 3. Mira esta serie: 60, 30, 20, 15, 12 ... la semilla de esta serie fue el número 60. Cree una función que recibe dos enteros: x, y y. Si alguno de ellos es 0 o negativo, o si son mayores que 255, la función debe devolver -1. La función debe devolver el elemento y de las series generadas por x. Por ejemplo: Si la función recibe x = 60, y = 3, devolverá 20, porque el 20 es el elemento 3 º en la serie genera cuando x = 60. La función recibirá 2 enteros, devuelve un valor de punto flotante. 
@@ -51,7 +50,7 @@ Por ejemplo:
 Si la función recibe "cero", debe devolver 0. Si la función recibe "Uno", debería devolver 1. Si la función recibe "once", debería devolver 11. Si la función recibe "trece", debe devolver 13. Si la función recibe "cincuenta y cinco", debe devolver 55. Si la función recibe "CIEN", debe devolver 100. Si la función recibe "Doscientos treinta y uno", debe devolver 231. 
 Si la función no entiende la cadena, debe devolver -1 
 La función recibirá una cadena y devolver un entero. 
-*18. Cree una función que ordena una matriz de palabras en orden alfabético. El texto será siempre en minúsculas, y no contendrá ningún carácter especial o número. No utilice funciones de ordenación proporcionadas por el lenguaje (lectura de las limitaciones). 
+18. Cree una función que ordena una matriz de palabras en orden alfabético. El texto será siempre en minúsculas, y no contendrá ningún carácter especial o número. No utilice funciones de ordenación proporcionadas por el lenguaje (lectura de las limitaciones). 
 Por ejemplo: 
 Si la función recibe: 
 A = ['prueba', 'concurso', 'programación', 'más']; 
