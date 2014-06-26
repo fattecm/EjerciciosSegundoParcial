@@ -72,3 +72,34 @@ var_dump(EjerNueve(1));
 var_dump(EjerNueve(16));
 var_dump(EjerNueve(14));
 echo "<hr>\n";
+
+
+/*EJERCICIO 12
+
+ * 
+ *  */
+
+function EjerDoce(array $numeros){
+    $suma=0;
+    $sumaMayores=0;
+    $nelementos=  (1/2)*count($numeros);    
+        for($i=0;$i<$nelementos-1; $i++){
+            //echo $numeros[$i];
+                    $suma+=$numeros[$i];
+        }
+        //echo "suma es:". $suma;
+        for($j=count($numeros)-1;$j>$nelementos; $j--){
+                    $sumaMayores+=$numeros[$j];
+        }
+        //echo "suma es:". $sumaMayores;
+        
+        if($suma==$sumaMayores){
+            echo $i;
+            echo "<hr>\n";
+        }
+}
+
+EjerDoce([-7, 1, 5, 2, -4, 3, 0]);
+EjerDoce([-7, 1, 2, -4, -2]);
+
+
