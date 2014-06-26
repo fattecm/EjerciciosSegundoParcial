@@ -63,6 +63,7 @@ La función puede recibir cualquier número entero positivo de 32 bits.
 Por ejemplo: 
 Si la función recibe 25, debe devolver 3. ¿Por qué? Debido a que 25 en binario es 11001, que tiene 3 unidades. 
 La función recibirá un entero y devolver un entero. 
+
 20. En teoría de números, una partición de un entero positivo n, también denominada partición entera, es una forma de escribir n como suma de enteros positivos. Dos sumas que difieren sólo en el orden de sus sumandos se consideran la misma partición. 
 Las particiones de 4 se enumeran a continuación:..... 1. 4 2. 3 + 1 3. 2 + 2 4. 2 + 1 + 1 5. 1 + 1 + 1 + 1 
 Las particiones de 8 se enumeran a continuación:....... 1. 8 2. 7 + 1 3. 6 + 2 4. 6 + 1 + 1 5. 5 + 3 6. 5 + 2 + 1 7. 5 + 1 + 1 + 1 8. 4 + 4 9. 4 + 3 + 1 10. 4 + 2 + 2 11. 4 + 2 + 1 + 1 12. 4 + 1 + 1 + 1 + 1 13. 3 + 3 + 2 14. 3 + 3 + 1 + 1 
@@ -70,13 +71,15 @@ Las particiones de 8 se enumeran a continuación:....... 1. 8 2. 7 + 1 3. 6 + 2 
 La función debe devolver el número de particiones x tiene. 
 Por ejemplo: Si la función recibe 4, debe devolver 5 Si recibe 8, devolverá 22, etc. 
 La función recibirá un número entero, devuelve otro entero. 
-*21. Dada una matriz 2-D de caracteres, escribir una función que devuelve una cadena con los caracteres de la matriz con el fin de caracol. (A partir de [0] [0] elemento, elemento siguiente: [0] [1], etc ..). 
+
+21. Dada una matriz 2-D de caracteres, escribir una función que devuelve una cadena con los caracteres de la matriz con el fin de caracol. (A partir de [0] [0] elemento, elemento siguiente: [0] [1], etc ..). 
 La matriz puede tener cualquier longitud, pero siempre será un cuadrado. 
 Por ejemplo: Dada esta matriz: 
 a b c 
 d e f 
 g h i 
 Devuelve una cadena con el valor: "abcfihgde". 
+
 22. Dada una matriz 2-D de los números enteros, escribir una función que, con el fin de caracol, sumas y restas, a continuación, y luego se multiplican los valores de los elementos (a partir de [0] [0] elemento, elemento siguiente:. [0] [1 ], etc ..) 
 La matriz puede tener cualquier longitud, siempre va a ser un rectángulo, pero no necesariamente un cuadrado. 
 Por ejemplo: Dada esta matriz: 
@@ -85,6 +88,7 @@ Por ejemplo: Dada esta matriz:
 3 2 1 
 Comenzamos con el primer elemento: 5 Luego sumamos el siguiente elemento: 5 +4 = 9 Entonces restamos el siguiente elemento: 9-7 = 2 Entonces multiplicamos el siguiente elemento: 2 * 3 = 6 Entonces sumamos el siguiente elemento : 6 + 1 = 7 El restamos el siguiente elemento: 7 - 2 = 5 Entonces multiplicamos el siguiente elemento: 5 * 3 = 15 Entonces sumamos el siguiente elemento: 15 + 1 = 16 Entonces restamos el siguiente elemento: 16 - 2 = 14 
 La función debe devolver 14 
+
 23. Expresiones de Postfix son expresiones aritméticas en que los operadores vienen después de todo lo que operan en. Postfix es importante porque mantiene la precedencia sin el uso de (), y son "fáciles" de evaluar. 
 Cree una función que recibe una cadena con una expresión de postfix y devolver el valor calculado. 
 La función recibirá una expresión sufijo correcto. Habrá un espacio entre cada número / operador. Los operadores son + (suma), - (resta), * (multiplicación), potencia (**). Los números negativos están precedidos por un signo menos (-). No considere el caso de un número elevado a una potencia negativa (exponente será siempre positivo). 
@@ -95,7 +99,8 @@ Input Output
 10 25 + 3 * 100 * 50 - 85 + 10 13 al 04 * 36 * + -5242 
 10 -2 + 5 * 40 
 10 2** 100 
-*24. Dada una matriz 2-D de valores booleanos, busque el número de pasos necesarios para salir de la esquina superior izquierda a la esquina inferior derecha de la matriz. Los falsos valores serán considerados como paredes, y los verdaderos valores como espacios vacíos donde podemos caminar. 
+
+24. Dada una matriz 2-D de valores booleanos, busque el número de pasos necesarios para salir de la esquina superior izquierda a la esquina inferior derecha de la matriz. Los falsos valores serán considerados como paredes, y los verdaderos valores como espacios vacíos donde podemos caminar. 
 La esquina superior izquierda es la [0] [0] Valor de la matriz. La esquina inferior derecha es el valor [n] [m] de la matriz. Una matriz siempre será rectangular, pero no siempre un cuadrado. 
 Se le permite moverse en cualquier dirección (arriba, abajo, izquierda, derecha, en diagonal). 
 Si no hay un camino, la función debe devolver -1. 
