@@ -3,7 +3,7 @@ EjerciciosSegundoParcial
 
 24 Ejercicios de Web
 
-
+/*EJERCICIO 3*/
 function EjerTres($num1, $num2) {
     // se hace algo
     $var=0;
