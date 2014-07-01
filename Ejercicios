@@ -533,62 +533,68 @@ echo "<hr>\n";
  * al 122 que es la z.
  *  */
 
+
 function ordenarPalabras(array $palabras){
-    echo "Ejercicio 18";
-    
     $orden=0;
     $palabrasOrdenadas=array();
     $ban=0;
-    foreach ($palabrasOrdenadas as $value) {
+    $cont=0;
+    foreach ($palabras as $value) {
         $letra=substr ( $value, 0,1);
         $letraAnumero=  ord($letra);
         if($letraAnumero<97 || $letraAnumero>122){
             echo "Las palabras deben de ser en minusculas";
-            $ban=1;
+            return;
         }
-        
-    }
-    
+    }   
     //str_word_count($cadena, 0) nos devuelve el numero de palabras
     //$npalabras=str_word_count($cadena, 0);
-    while($ban){
+    while($ban==0){
         for($i=0;$i<count($palabras);$i++)
         {
             $palabra=$palabras[$i];
-            echo $palabra." ";
+            $palabra2=$palabras[$i+1];
+            //echo $palabra." ";
             // con substr cogemos el primer carácter de la palabra
             $letra=substr ( $palabra, 0,1);
+            $letra2=substr ( $palabra2, 0,1);
             //echo $letra;
             //ord convierte el carácter a código ASCII
             $letraAnumero=  ord($letra);
-            echo $letraAnumero;
+            $letraAnumero2=  ord($letra2);
+            //echo $letraAnumero;
             //si no es minúscula
-            if($letraAnumero<97 || $letraAnumero>122){
-                echo "Las palabras deben de ser en minusculas";
-
-            }else{
-
-                /*if($letraAnumero>$orden){
-                    $orden=$letraAnumero;
-                    $palabrasOrdenadas=$palabras[i];
-                }*/
-
-
-            }
-
+                if($letraAnumero<$letraAnumero2){
+                    $menor=$letraAnumero;
+                }
         }
-        /*foreach ($palabrasOrdenadas as $value) {
-            echo $value;
-
-        }*/
-    }
-    
-}
+        //pasamos el ascii a caracter
+        $caracter2=chr($menor);
+        for($j=0;$j<count($palabras);$j++)
+        {
+            $palabra=$palabras[$j];
+            //echo $palabra." ";
+            // con substr cogemos el primer carácter de la palabra
+            $letra=substr ( $palabra, 0,1);
+            if($caracter2==$letra){
+                $palabrasOrdenadas[$cont]=$palabra; 
+                $cont++;
+            }
+        }
+        if(count($palabras)==count($palabrasOrdenadas)){
+            $ban=1;
+        }
+           
+        }
+        foreach ($palabrasOrdenadas as $value) {
+            echo $value." ";
+            
+        }
+ }
 echo "Ejercicio 18";
 echo "<hr>\n";
-ordenarPalabras(['prueba', 'Concurso', 'programación', 'más']);
+ordenarPalabras(['prueba', 'concurso', 'programación', 'más']);
 echo "<hr>\n";
-
 
 //Ejercicio Nº 19
  function contarbinario($numero) { 
