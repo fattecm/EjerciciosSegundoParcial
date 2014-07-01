@@ -1,7 +1,114 @@
-/*EJERCICIO 3
-
+/*Ejercicio 1
+ * 
  * 
  */
+
+
+function calcularnumero($x,$y){
+    $numero1 = 0;
+    $numero2 = 0;
+    $resultado = -1;
+    $num1 = 7;
+    $num2 = 6;
+    if ($x > 255 || $y > 255 || $x <= 0 || $y <= 0) {
+        return $resultado;
+    } 
+    else{
+        for ($i = 1; $i <= $x; $i++)
+        {
+            if ($i == 1)
+            {
+                $numero1 = $num1;
+            }
+            if ($i == 2)
+            {
+                $numero1 = $num2;
+            }
+            if ($i > 2)
+            {
+                if ($i % 2 != 0)
+                {
+                    $num1 = $num1 + 1;
+                    $numero1 = $num1;
+                }
+                else
+                {
+                    $num2 = $num2 - 2;
+                    $numero1 = $num2;
+                }
+            }
+        }
+        $num1 = 7;
+        $num2 = 6;
+        for ($j = 1; $j <= $y; $j++)
+        {
+            if ($j == 1)
+            {
+                $numero2 = $num1;
+            }
+            if ($j == 2)
+            {
+                $numero2 = $num2;
+            }
+            if ($j > 2)
+            {
+                if ($j % 2 != 0)
+                {
+                    $num1 = $num1 + 1;
+                    $numero2 = $num1;
+                }
+                else
+                {
+                    $num2 = $num2 - 2;
+                    $numero2 = $num2;
+                }
+            }
+        }
+        $resultado = $numero1 + $numero2;
+        return $resultado;
+    }        
+}
+
+calcularnumero(8,9);
+echo "<hr>\n";
+
+// Ejercicio Nº 2
+
+function serie2($x,$y)
+ {
+           $contador=0;
+           $result=$x;
+           $i=1;
+           if(($x>255 ||  $x<0  ) || ($y>255 || $y<0))
+           {
+               echo"</br>". -1;
+           }
+              else {
+                      do  {
+                            $result=$result*$i;
+                           $contador=$contador+1;
+                           $i++;
+                           }
+                    while($contador!=$y);
+                     echo"</br>".$result;
+              }                                
+    }
+    
+echo serie2(26,3);
+echo "<hr>\n";
+
+
+
+/* EJERCICIO 3
+ * SERIE
+1 = Número 60
+2 = Número 60 * 1/2 = 30.
+3 Número = 60 * 1/3 = 20.
+4 Número = 60 * 1/4 = 15.
+5 Número = 60 * 1/5 = 12.
+6 Número = 60 * 1/6 = 10.  */
+
+
 function EjerTres($num1, $num2) {
     // se hace algo
     $var=0;
@@ -22,6 +129,23 @@ function EjerTres($num1, $num2) {
 }
 
 EjerTres(-5, 10)."<br>";
+echo "<hr>\n";
+
+/*EJERCICIO 5
+
+ * 
+ *  */
+  function eliminaduplicados(array $entrada)
+  {
+    
+    $resultado = array_unique($entrada);   //array_unique elimina valores duplicados de un array
+    echo"</br>";
+    var_dump ($resultado);                 // var_dump muestra información sobre una variable.
+    
+  }
+  
+echo eliminaduplicados([2,4,5,6,8,4,6,8,9,10]);
+echo "<hr>\n";
 
 /*EJERCICIO 6
 
@@ -45,12 +169,30 @@ function EjerSeis($cadena){
 EjerSeis("esta es una prueba")."<br>";
 echo "<hr>\n";
 
+/*EJERCICIO 8
+
+ * 
+ *  */
+function buscara($cadena)
+{ 
+    $contador=0;
+    for($i=0;$i<=strlen($cadena)-1; $i++)  //strlen devuelve la longitud de una cadena
+    {
+       if (($cadena[$i] == 'a' ) || ($cadena[$i] == 'A' ))
+       {
+            $contador++;
+       }
+    }
+    return $contador;
+}
+    
+ $cadena="Hola Ana como estas";
+ echo"</br>"."La  " .$cadena.  "    tiene   ". buscara($cadena).  "    a";
+ 
 /*EJERCICIO 9
 
  * 
  *  */
-
-
 function EjerNueve($num1){
     $ban=false;
     $result=0;
@@ -66,11 +208,99 @@ function EjerNueve($num1){
         return $ban;    
     }  
 }
-
+// var_dump hace que aparezca el boolean, si se quita no aparece;
 var_dump(EjerNueve(25));
 var_dump(EjerNueve(1));
 var_dump(EjerNueve(16));
 var_dump(EjerNueve(14));
+echo "<hr>\n";
+
+
+/*EJERCICIO 10
+ * 
+ * 
+ */
+function ejerDiez($x,$y){
+$varaux = 0;
+$resultado = -1;
+$noencontrado = 1;
+if ($x > $y)
+{
+    $varaux = $x;
+    $x = $y;
+    $y = $varaux;
+}
+for ($i = $x; $i <= $y; $i++)
+{
+    $sum = 1;
+    $n = $i;
+    if ($noencontrado == 1) { 
+        for ($compt = 2; $compt * $compt <= $n; $compt++)
+        {
+            if ($compt * $compt == $n)
+            {
+                $sum = $sum + $compt;
+            }
+            else if ($n % $compt == 0)
+            {
+                $sum = $sum + $compt;
+                $sum = $sum + $n / $compt;
+            }
+        }
+        if (($sum == $n) & ($n != 0) & ($n != 1))
+        { 
+            echo($n);
+            $noencontrado = 0;
+        }
+    }         
+}
+if ($noencontrado == 1)
+{
+    echo $resultado;
+}
+}
+ejerDiez(5,10);
+echo "<hr>\n";
+
+/*EJERCICIO 11
+
+ * 
+ *  */
+function contarelementosrepetidos($array)
+{
+     $repetido = array();
+ 
+    foreach( (array)$array as $valor )
+    {
+        $encontrado = false;
+ 
+        foreach( $repetido as $i => $numero )
+        {
+            if( $numero['numero'] === $valor )
+            {
+               $encontrado = true;
+               $repetido[$i]['repetido']++;
+            }
+     
+        }
+ 
+        if( false === $encontrado )
+        {
+            $i = count($repetido);
+            $repetido[$i] = array();
+            $repetido[$i]['numero'] = $valor;
+            $repetido[$i]['repetido'] = 1;
+        }
+   
+    }   
+return $repetido;
+   
+}
+$matriz = array(1,1,2,3,4,5,6,7,8,9,2,3,45,6);
+echo"</br>";
+echo "Elemente mayormente repetido</br>";
+//revisar
+print_r(contarelementosrepetidos($matriz)) ;echo"</br>"; 
 echo "<hr>\n";
 
 
@@ -101,7 +331,43 @@ function EjerDoce(array $numeros){
 
 EjerDoce([-7, 1, 5, 2, -4, 3, 0]);
 EjerDoce([-7, 1, 2, -4, -2]);
+echo "<hr>\n";
 
+/*EJERCICIO 14
+
+ * 
+ *  */
+function invierteserie($x,$y)
+{
+  
+    $contador=0;
+    $z=4;
+     if(($x>255 ||  $x<0  ) || ($y>255 || $y<0))
+     {
+        return -1;
+     }
+    else
+    {  
+    do{
+       $valor=$x.$y;
+       $invertido=$y.$x;
+       $x=$x+1;
+       $y=$y+1; 
+       $contador=$contador+1;
+    }while($contador!=$z);
+      
+    }
+   
+ return$valor .$invertido; 
+ 
+}
+
+echo invierteserie(10,12);
+
+/*EJERCICIO 15
+
+ * 
+ *  */
 function EjerQuince(array $numeros){
     $nelementos=  count($numeros);
     $suma=0;
@@ -110,7 +376,6 @@ function EjerQuince(array $numeros){
         for($i=0;$i<$nelementos; $i++){
                 //echo $numeros[$i];
                 $suma+=$numeros[$i];
-                //
                 //
                 //echo $suma;
                
@@ -122,9 +387,86 @@ function EjerQuince(array $numeros){
                     
                 }
                               
-            
     }
     echo $result;
 }
 
 EjerQuince( [4, -3, 7, 2, 4, -5, 1, 2] );
+echo "<hr>\n";
+
+/*EJERCICIO 16
+
+ * 
+ *  */
+function EjerDieciSeis($x,$y,$z){
+
+$resultado = -1;
+$multiplicador = 2;
+if ($y > $z)
+{
+    $resultado = 0;
+    if ($x > 255 || $y > 255 || $z > 255 || $x <= 0 || $y <= 0 || $z <= 0)
+    {
+        $resultado = -1;
+    }
+}
+else
+{
+    if ($x > 255 || $y > 255 || $z > 255 || $x <= 0 || $y <= 0 || $z <= 0)
+    {
+        $resultado = -1;
+    }
+    else
+    {
+        for ($i = 1; $i <= $z; $i++)
+        {
+            if ($i == $y)
+            {
+                $resultado = $x;
+            }
+            else
+            {
+                $x = $x * $multiplicador;
+                $multiplicador = $multiplicador + 2;
+                $resultado = $resultado + $x;
+            }
+        }
+    }
+}
+echo $resultado;
+}
+EjerDieciSeis(3,1,3);
+echo "<hr>\n";
+
+/*EJERCICIO 17
+
+ * 
+ * 
+ *  */
+
+function convertiraentero($variable)
+{  
+    if(($variable=="uno") || ($variable=="UNO") || ($variable=="Uno") )
+    {
+        return 1;
+    }
+     if(($variable=="dos") || ($variable=="DOS") || ($variable=="Dos") )
+    {
+        return 2;
+    }
+     if(($variable=="tres") || ($variable=="TRES") || ($variable=="Tres") )
+    {
+        return 3;
+    }
+     if(($variable=="cuatro") || ($variable=="CUATRO") || ($variable=="Cuatro") )
+    {
+        return 4;
+    }
+     if(($variable=="cinco") || ($variable=="CINCO") || ($variable=="Cinco") )
+    {
+        return 5;
+    }
+}
+$variable="uno";
+echo"</br>".  convertiraentero($variable);
+echo "<hr>\n";
