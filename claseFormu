@@ -1,0 +1,137 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+ require 'rb.php' ;
+ class Cliente
+{
+     private $Email;
+     private $Contrasena;
+     private $ConfContrasena;
+     private $Cedula;
+     private $Nombre;
+     private $Apellidos;
+     private $Tlfijo;
+     private $Telefono;
+     Private $Genero;
+     Private $FechaNaci;
+     
+     
+     public function __construct($email,$contrasena,$ConfContrasena, $cedula, $nombre, $apellidos,$Tlfijo, 
+             $telefono, $Genero, $FechaNaci) {
+         $this->Email=$email;
+         $this->Contrasena=$contrasena;
+         $this->ConfContrasena=$ConfContrasena;
+         $this->Cedula=$cedula;
+         $this->Nombre=$nombre;
+         $this->Apellidos=$apellidos;
+         $this->Tlfijo=$Tlfijo;
+         $this->Telefono=$telefono;
+         $this->Genero=$Genero;
+         $this->FechaNaci=$FechaNaci;
+         R::setup('mysql:host=localhost; dbname=cliente', 'root','');
+    }
+     public function getEmail(){
+         return $this->Email;
+     }
+     public function setEmail($valor){
+         $this->Email=$valor;
+     }
+     public function getContrasena(){
+         return $this->Contrasena;
+     }
+     public function setContrasena($valor){
+         $this->Contrasena=$valor;
+     }
+          public function getConfContrasena(){
+         return $this->ConfContrasena;
+     }
+     public function setConfContrasena($valor){
+         $this->ConfContrasena=$valor;
+     }
+     public function getCedula(){
+         return $this->Cedula;
+     }
+     public function setCedula($valor){
+         $this->Cedula=$valor;
+     }
+     public function getNombre(){
+         return $this->Nombre;
+     }
+     public function setNombre($valor){
+         $this->Nombre=$valor;
+     }
+     public function getApellidos(){
+         return $this->Apellidos;
+     }
+     public function setApellidos($valor){
+         $this->Apellidos=$valor;
+     }
+    public function getTlfijo(){
+         return $this->Tlfijo;
+     }
+     public function setTlfijo($valor){
+         $this->Tlfijo=$valor;
+     }
+      public function getTelefono(){
+         return $this->Telefono;
+     }
+     public function setTelefono($valor){
+         $this->Telefono=$valor;
+     }
+    public function getGenero(){
+         return $this->Genero;
+     }
+     public function setGenero($valor){
+         $this->Genero=$valor;
+     }
+           public function getFechaNaci(){
+         return $this->FechaNaci;
+     }
+     public function setFechaNaci($valor){
+         $this->FechaNaci=$valor;
+     }
+     
+     public function crear(){
+        $clientesP= R::dispense('clientes1');
+                //$alumnos->Id=$_POST["id"];
+                $clientesP->Email=  $this->getEmail(); 
+                $clientesP->Contrasena=  $this->getContrasena(); 
+                $clientesP->ConfContrasena=  $this->getConfContrasena(); 
+                $clientesP->Cedula=  $this->getCedula(); 
+                $clientesP->Nombre=  $this->getNombre(); 
+                $clientesP->Apellido=$this->getApellido();
+                $clientesP->Tlfijo=  $this->getTlfijo(); 
+                $clientesP->Telefono=$this->getTelefono(); 
+                $clientesP->Genero=  $this->getGenero(); 
+                $clientesP->FechaNaci=  $this->getFechaNaci(); 
+                $clientesP=R::store($clientesP); 
+     }
+     
+     public function eliminar(){
+        $clientesP = R::load('clientes1', $this->Cedula);
+                R::trash( $clientesP); 
+     }
+     
+     public function actualizar(){
+          $clientesP = R::load('clientes1', $this->Cedula);
+                //$alumnos->Id= $_POST["id"];
+                $clientesP->Email=  $this->getEmail(); 
+                $clientesP->Contrasena=  $this->getContrasena(); 
+                $clientesP->Cedula=  $this->getCedula(); 
+                $clientesP->Nombre=  $this->getNombre(); 
+                $clientesP->Apellido=$this->getApellido();
+                $clientesP->Telefono=$this->getTelefono();  
+                R::store($clientesP);
+     }
+     
+     public function buscar(){
+          $clientesP = R::load('clientes1', $this->Cedula);
+     }
+}
+
+
+?>
