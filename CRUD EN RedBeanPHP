@@ -1,0 +1,362 @@
+        <?php
+        require 'rb.php' ;
+        R::setup('mysql:host=localhost; dbname=cliente', 'root',''); 
+         
+        if (isset($_POST['boton']))    // isset permite ver si la variable existe
+        {
+            $boton=$_POST["boton"];    //recuperamos el boton 
+            $busca=$_POST["busca"]; 
+            if($boton=="Buscar")
+            {
+                //$dat=R::getRow("SELECT * FROM alumnos2 WHERE Id= :busca", array(':busca' => 1) );
+                //print_r($dat);
+                $alumnos = R::load('clientes2', $busca);
+            }
+            if($boton=="Actualizar")
+            {
+                
+                $alumnos = R::load('clientes2', $busca);
+                
+                $alumnos->Email=$_POST["email"]; 
+                $alumnos->Contrasena=$_POST["password1"]; 
+                $alumnos->ConfContrasena=$_POST["password2"]; 
+                $alumnos->Cedula=$_POST["cedula"]; 
+                $alumnos->Nombre=$_POST["nombre"]; 
+                $alumnos->Apellido=$_POST["apellidos"]; 
+                $alumnos->Tlfijo=$_POST["fijo"]; 
+                $alumnos->Telefono=$_POST["movil"]; 
+                $alumnos->Genero=$_POST["genero"];
+                $alumnos->FechaNaci=$_POST["nacimiento"]; 
+                R::store($alumnos);
+            }
+            if($boton=="Eliminar")
+            {
+                $alumnos = R::load('clientes2', $busca);
+                R::trash( $alumnos );
+                
+            }
+               if($boton=="Aceptar")  //value del boton
+            {
+                $alumnos= R::dispense('clientes2');
+                //$alumnos->Id=$_POST["id"]; 
+                $alumnos->Email=$_POST["email"]; 
+                $alumnos->Contrasena=$_POST["password1"]; 
+                $alumnos->ConfContrasena=$_POST["password2"]; 
+                $alumnos->Cedula=$_POST["cedula"]; 
+                $alumnos->Nombre=$_POST["nombre"]; 
+                $alumnos->Apellido=$_POST["apellidos"]; 
+                $alumnos->Tlfijo=$_POST["fijo"]; 
+                $alumnos->Telefono=$_POST["movil"]; 
+                $alumnos->Genero=$_POST["genero"];
+                $alumnos->FechaNaci=$_POST["nacimiento"]; 
+                $insertado=R::store($alumnos);
+               
+
+            }
+        }
+?>
+
+
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es">
+    <head>
+        <title>Movil World</title>
+        <!-- Utilizamos un css externo -->
+        <link rel="stylesheet" type="text/css" href="estiloCss.css"/>
+        <!-- Utilizamos style para mejorar la apariencia de la página -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+        <!--VALIDACIONES -->
+    <script>
+        
+        function enviado(){
+            var correo=document.getElementById("email").value;
+            var pass=document.getElementById("password").value;
+            if((correo=="")&& (pass=="")) {
+                alert("Verifique correo o contraseña");
+                return false;
+            }
+            var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if ( !expr.test(correo) ){
+                alert("Error: La dirección de correo " + correo + " es incorrecta.");
+                return false;
+            }
+            if((correo!="")&& (pass!="")&& expr.test(correo) ) {
+                alert("HA ACCEDIDO CORRECTAMENTE...");
+            }
+        }
+           
+        
+        function validacion(id){
+            var element=document.getElementById(id);
+            //si la informacion es válida se convierte en azul, caso contrario en rojo
+            if(element.checkValidity())
+                element.style.borderColor="blue";
+            else
+                element.style.borderColor="red";
+            }
+        //creamos una función para que de un mensaje en caso de no aceptar los datos
+        /* function enviado(){
+                var emailValido=document.getElementById('email').checkValidity();
+                var contrasenaValida=document.getElementById('contrasena').checkValidity();
+                var confcontrasenaValida=document.getElementById('confcontrasena').checkValidity();
+                var nombreValido=document.getElementById('nombre').checkValidity();
+                var cedulaValida=document.getElementById('cedula').checkValidity();
+                var apellidosValido=document.getElementById('apellidos').checkValidity();
+                var movilValido=document.getElementById('movil').checkValidity();
+                
+                if(nombreValido && apellidosValido &&  emailValido && contrasenaValida && 
+                        confcontrasenaValida && cedulaValida && movilValido)
+                    aler("FORMULARIO DE DATOS ENVIADO CORRECTAMENTE...");
+                else
+                    aler("PORFAVOR VERIFIQUE LOS DATOS");
+            }*/
+        function validarCampos(){
+            var correo=document.getElementById("email").value;
+            var pass=document.getElementById("password1").value;
+            var confpass=document.getElementById("password2").value;
+            //document.forms[1].cedula.value
+            //var pass=document.getElementById("contrasena").value;
+            //var confpass=document.getElementById("confcontrasena").value;
+            if(correo==""){
+                alert("Por favor dígite correo electrónico");  
+                return false;
+            }
+            var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if ( !expr.test(correo) ){
+                alert("Error: La dirección de correo " + correo + " es incorrecta.");
+                return false;
+            }
+                    
+            if(pass==""){
+                alert("Por favor dígite contraseña");
+                return false;
+            }    
+            if(confpass==""){
+                alert("Por favor dígite confirmacion de contraseña");
+                return false;
+            }
+            if (pass != confpass) {
+                alert("Las contraseñas deben coincidir");
+                return false;
+            } else {
+                alert("USUARIO REGISTRADO!!");
+                return true;
+                  }
+            var espacios = false;
+            var cont = 0;
+
+            while (!espacios && (cont < pass.length)) {
+                if (pass.charAt(cont) == " ")
+                   espacios = true;
+                   cont++;
+            }
+            if (espacios) {
+                alert ("La contraseña no puede contener campos en blanco");
+                return false;
+            }
+                //VALIDAR FECHA CON EXPRESIONES REGULARES
+                /*var re=/^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/
+	
+                if(!re.exec(document.getElementById("nacimiento").value))
+                {
+                        alert("La fecha no tiene formato DD/MM/AAAA")
+                        document.getElementById("fecha").focus()
+                        return false;
+                }
+                else{
+                        alert("Fecha en formato correcto");
+                   }*/
+        }
+       
+        /*Esta es una funcion para verificar la cedula en el checkbox de lapagina*/
+        function validarCedula( form )
+        {
+            var cedula = form;
+            arrayCedula = cedula.split( "" );
+            var num = arrayCedula.length;
+            //alert("tamaño cedula"+num)
+            if ( num == 10 )
+            {     
+                var totalImpar=0;
+                var UltimoDigito = (arrayCedula[9]);
+                var totalPar = 0;
+                //alert("El ultimo digito"+UltimoDigito);
+                for( i=0; i < (num-1); i++ )//se opera con todos menos con el ultimo digito
+                {
+                  var mult = 0;
+                  if ( ( i%2 ) != 0 ) { //Si es par la posición, empezando de 1, no de 0     
+                    var totalPar = totalPar + ( arrayCedula[i] *1); 
+                    //alert("total par" + totalPar);
+                  }
+                  else // es impar la posicion empezando por 1, se multiplica *2
+                  {
+                    mult = arrayCedula[i] * 2;
+                    //alert("multiplicacion es"+mult);
+                        if ( mult > 9 ){ //si la multiplicación resulta mas de 9, se resta 9
+                          totalImpar = parseInt(totalImpar + ( mult - 9 ));
+                          //alert("total sin 9"+totalImpar);
+                        }else{
+                            totalImpar = parseInt(totalImpar + mult);
+                        }
+                  }
+                  //alert("total Impar"+totalImpar);
+                  //alert("total Par"+totalPar);
+                }
+                var Total= parseInt(totalPar + totalImpar);
+                decena = Total / 10;
+                //alert("el Total es "+ Total);
+                decena = Math.floor( decena );//coge solo el entero
+                //alert("la decena es "+ decena);
+                decena = ( decena + 1 ) * 10;
+                //alert("la decena es "+ decena);
+                final = ( decena - Total );
+                //alert("el último digito es  "+ final);
+                if ( ( final == 10 && UltimoDigito == 0 ) || ( final == UltimoDigito ) ) {
+                  alert( "El número de cédula es correcto" );
+                  return true;
+                }
+                else
+                {
+                  if(final==10)
+                      final=10-10;
+                  alert( "Número de cédula incorrecto, último digito debe ser: " +final );
+                  return false;
+                }
+            }
+            else
+            {
+              alert("Digitos de cédula incorrecta, verifique nº de digitos");
+              return false;
+            }
+          }
+</script>
+    
+    <body>
+                <center> <h1> <img src="./imagenes/tierra-04.GIF"  align="middle" /> Móvil World <img src="./imagenes/tierra-04.GIF" align="middle"/></h1></center>
+        <center> <p> <h3 > Bienvenidos a Móvil World</h3></p> </center>
+        <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>  
+        </ul>  
+
+        <div id="formulario">
+        <input type="submit" name="boton" value="Buscar" id="buscar" name="boton">
+             <input type="text"   id="txtbusca" name="busca" value= "<?php if (isset($clientesP->Cedula))  echo $clientesP->Cedula;   ?>" >
+             <input type="submit" value="Actualizar" id="Actualizar" name="boton">
+             <input type="submit" value="Eliminar" id="Eliminar" name="boton">
+        
+        <form id="forFormu" name="forFormu"  >
+            <fieldset>
+                <h3><legend>Ingrese datos de Registro</legend></h3>
+                <h2>
+                <section>
+                    <label for="email">Email*</label> 
+                    <!--En los campos obligatorios introducimos required, para que no se pueda
+                    aceptar si antes haber introducido los datos-->
+                    <input type="email" name="email" id="email" placeholder="example@example.com" 
+                           oninput="validacion('email')"  maxlength="30" required 
+                           value= "<?php if (isset($clientesP->Email))  echo $$clientesP->Email;   ?>"/>
+                </section>
+                <section>
+                    <label for="contrasena">Contraseña*</label> 
+                    <input type="password" name="password1" id = "password1" value="" placeholder="escriba contraseña" 
+                            required
+                            value= "<?php if (isset($clientesP->Contrasena))  echo $$clientesP->Contrasena;   ?>"/>
+                </section>
+                 <section>
+                    <label for="confcontrasena">Confirmar Contraseña*</label> 
+                    <input type="password" name="password2" id="password2" value="" placeholder="repita contrasena" 
+                            required />
+                 </h2>
+            </fieldset>
+        
+        </form>
+            
+        <form name="formulario de Datos Personales" method="post" action="#" onSubmit="return validarPasswd()">
+            <fieldset> 
+                <h3><legend>Ingrese Datos Personales</legend></h3>
+                <h2>
+                <!--<section>
+                    <label for="cliente">Tipo de cliente</label>
+                    <!--<input type="button" value="Tipo de Cliente" id="sexo" name="sexo">
+                    <select name="sexo" id="sexo" value="<?php if (isset($alumnos->Sexo)) echo $alumnos->Sexo;?>"> 
+                        <option value="1"> Empresa
+                        <option value="2"> Particular
+                    </select></br> -->
+
+                </section>
+                <section>
+                    <label for="cedula">Cédula*</label> 
+                    <input type="text" name="cedula" id="cedula" placeholder="11111111-1" 
+                            required
+                            value= "<?php if (isset($clientesP->Cedula))  echo $$clientesP->Cedula;   ?>"/>
+                </section>
+                <section>
+                    <label for="nombre">Nombres*</label> 
+                    <!--CON EL PATTERN para que permita introducir solo letras mayúsculas de la A-Z, minimo 5 y maximo 20 caracteres, 
+                    y el maxlength para longitud máxima de 20 caracteres-->
+                    <input type="text" name="nombre" id="nombre" value="" placeholder="NOMBRES" 
+                            required pattern="([A-Z]{5,20})" maxlength="20"
+                            value= "<?php if (isset($clientesP->Nombre))  echo $$clientesP->Nombre;   ?>"/>
+                </section>
+                <section>
+                    <label for="apellidos">Apellidos*</label> 
+                    <input type="text" name="apellidos" value="" placeholder="APELLIDOS" required pattern="([A-Z]{5,20})" 
+                           maxlength="20"
+                           value= "<?php if (isset($clientesP->Apellidos))  echo $$clientesP->Apellidos;   ?>"/>
+                </section>
+                <section>
+                    <label for="fijo">Teléfono Fijo</label> 
+                    <input type="text" name="fijo" placeholder="052999999"   maxlength="9"/>
+                    <!-- pattern="(/^([0-9]+){9}$/)"-->
+                </section>
+                <section>
+                    <label for="movil">Móvil*</label> 
+                    <input type="text" name="movil" placeholder="099999999" required pattern="(^([0-9]+){10}$)" maxlength="10"
+                           value= "<?php if (isset($clientesP->Telefono))  echo $$clientesP->Telefono;   ?>"/>
+                </section>
+                <section>
+                    <label for="genero">Género</label> 
+                    <!--<input type="text" name="genero" placeholder="masculino o femenino"/>-->
+                    <select>
+                        <option value="f">Femenino</option>
+                        <option value="m">Masculino</option>
+                    </select>
+                </section>
+                <section>
+                    <label for="nacimiento">Fecha de nacimiento</label> 
+                    <input type="date" name="nacimiento" id="nacimiento" placeholder="01/01/2001" />
+                </section>
+                 <section>
+                    <label for="condiciones">Términos de Uso y Condiciones</label> 
+                    <textarea name="condiciones">Tienes que aceptar todas nuestras políticas de propietarios</textarea>
+                </section>
+                </h2>
+                
+            </fieldset>
+            <section>
+                <h3> <input type="submit" name="boton" value="Aceptar"  onclick="validarCedula(document.forms[1].cedula.value); validarCampos();"/></h3>
+                </section>
+             
+             
+        </form> 
+            
+      </div> 
+
+        <div id="pie" align=center>
+            Móvil World Ecuador S.L, con domicilio social en la vía Manta - Portoviejo km 2.4, de Montecristi, y RUC 1309478038001, 
+            está inscrito en el Registro Mercantil de MANTA, Inscripción 2, Hoja n_387176, Folio 132, 
+            Tomo X21.739. Es una una empresa dedicada a las telecomunicaciones, como prioridad la telefonía móvil.
+            © Copyright 2014 Móvil World Ecuador, S.L.
+            <br><a href="aviso_legal.html" style="color: #fff;">Aviso legal</a>
+	</div>
+    </body>
+</html>
