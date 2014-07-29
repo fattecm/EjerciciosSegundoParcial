@@ -1,4 +1,4 @@
-        <?php
+<?php
         require 'rb.php' ;
         R::setup('mysql:host=localhost; dbname=cliente', 'root',''); 
          
@@ -8,48 +8,46 @@
             $busca=$_POST["busca"]; 
             if($boton=="Buscar")
             {
-                //$dat=R::getRow("SELECT * FROM alumnos2 WHERE Id= :busca", array(':busca' => 1) );
-                //print_r($dat);
-                $alumnos = R::load('clientes2', $busca);
+                $clientesP = R::load('clientes2', $busca);
             }
             if($boton=="Actualizar")
             {
                 
-                $alumnos = R::load('clientes2', $busca);
+                $clientesP = R::load('clientes2', $busca);
                 
-                $alumnos->Email=$_POST["email"]; 
-                $alumnos->Contrasena=$_POST["password1"]; 
-                $alumnos->ConfContrasena=$_POST["password2"]; 
-                $alumnos->Cedula=$_POST["cedula"]; 
-                $alumnos->Nombre=$_POST["nombre"]; 
-                $alumnos->Apellido=$_POST["apellidos"]; 
-                $alumnos->Tlfijo=$_POST["fijo"]; 
-                $alumnos->Telefono=$_POST["movil"]; 
-                $alumnos->Genero=$_POST["genero"];
-                $alumnos->FechaNaci=$_POST["nacimiento"]; 
-                R::store($alumnos);
+                $clientesP->Email=$_POST["email"]; 
+                $clientesP->Contrasena=$_POST["password1"]; 
+                $clientesP->ConfContrasena=$_POST["password2"]; 
+                $clientesP->Cedula=$_POST["cedula"]; 
+                $clientesP->Nombre=$_POST["nombre"]; 
+                $clientesP->Apellido=$_POST["apellidos"]; 
+                $clientesP->Tlfijo=$_POST["fijo"]; 
+                $clientesP->Telefono=$_POST["movil"]; 
+                $clientesP->Genero=$_POST["genero"];
+                $clientesP->FechaNaci=$_POST["nacimiento"]; 
+                R::store($clientesP);
             }
             if($boton=="Eliminar")
             {
-                $alumnos = R::load('clientes2', $busca);
-                R::trash( $alumnos );
+                $clientesP = R::load('clientes2', $busca);
+                R::trash( $clientesP );
                 
             }
                if($boton=="Aceptar")  //value del boton
             {
-                $alumnos= R::dispense('clientes2');
+                $clientesP= R::dispense('clientes2');
                 //$alumnos->Id=$_POST["id"]; 
-                $alumnos->Email=$_POST["email"]; 
-                $alumnos->Contrasena=$_POST["password1"]; 
-                $alumnos->ConfContrasena=$_POST["password2"]; 
-                $alumnos->Cedula=$_POST["cedula"]; 
-                $alumnos->Nombre=$_POST["nombre"]; 
-                $alumnos->Apellido=$_POST["apellidos"]; 
-                $alumnos->Tlfijo=$_POST["fijo"]; 
-                $alumnos->Telefono=$_POST["movil"]; 
-                $alumnos->Genero=$_POST["genero"];
-                $alumnos->FechaNaci=$_POST["nacimiento"]; 
-                $insertado=R::store($alumnos);
+                $clientesP->Email=$_POST["email"]; 
+                $clientesP->Contrasena=$_POST["password1"]; 
+                $clientesP->ConfContrasena=$_POST["password2"]; 
+                $clientesP->Cedula=$_POST["cedula"]; 
+                $clientesP->Nombre=$_POST["nombre"]; 
+                $clientesP->Apellido=$_POST["apellidos"]; 
+                $clientesP->Tlfijo=$_POST["fijo"]; 
+                $clientesP->Telefono=$_POST["movil"]; 
+                $clientesP->Genero=$_POST["genero"];
+                $clientesP->FechaNaci=$_POST["nacimiento"]; 
+                $insertado=R::store($clientesP);
                
 
             }
@@ -77,7 +75,7 @@ and open the template in the editor.
     <script>
         
         function enviado(){
-            var correo=document.getElementById("email").value;
+            var correo=document..getElementById("email").value;
             var pass=document.getElementById("password").value;
             if((correo=="")&& (pass=="")) {
                 alert("Verifique correo o contraseña");
@@ -102,29 +100,10 @@ and open the template in the editor.
             else
                 element.style.borderColor="red";
             }
-        //creamos una función para que de un mensaje en caso de no aceptar los datos
-        /* function enviado(){
-                var emailValido=document.getElementById('email').checkValidity();
-                var contrasenaValida=document.getElementById('contrasena').checkValidity();
-                var confcontrasenaValida=document.getElementById('confcontrasena').checkValidity();
-                var nombreValido=document.getElementById('nombre').checkValidity();
-                var cedulaValida=document.getElementById('cedula').checkValidity();
-                var apellidosValido=document.getElementById('apellidos').checkValidity();
-                var movilValido=document.getElementById('movil').checkValidity();
-                
-                if(nombreValido && apellidosValido &&  emailValido && contrasenaValida && 
-                        confcontrasenaValida && cedulaValida && movilValido)
-                    aler("FORMULARIO DE DATOS ENVIADO CORRECTAMENTE...");
-                else
-                    aler("PORFAVOR VERIFIQUE LOS DATOS");
-            }*/
         function validarCampos(){
             var correo=document.getElementById("email").value;
             var pass=document.getElementById("password1").value;
             var confpass=document.getElementById("password2").value;
-            //document.forms[1].cedula.value
-            //var pass=document.getElementById("contrasena").value;
-            //var confpass=document.getElementById("confcontrasena").value;
             if(correo==""){
                 alert("Por favor dígite correo electrónico");  
                 return false;
@@ -162,18 +141,6 @@ and open the template in the editor.
                 alert ("La contraseña no puede contener campos en blanco");
                 return false;
             }
-                //VALIDAR FECHA CON EXPRESIONES REGULARES
-                /*var re=/^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/
-	
-                if(!re.exec(document.getElementById("nacimiento").value))
-                {
-                        alert("La fecha no tiene formato DD/MM/AAAA")
-                        document.getElementById("fecha").focus()
-                        return false;
-                }
-                else{
-                        alert("Fecha en formato correcto");
-                   }*/
         }
        
         /*Esta es una funcion para verificar la cedula en el checkbox de lapagina*/
@@ -240,41 +207,42 @@ and open the template in the editor.
 </script>
     
     <body>
-                <center> <h1> <img src="./imagenes/tierra-04.GIF"  align="middle" /> Móvil World <img src="./imagenes/tierra-04.GIF" align="middle"/></h1></center>
+        <center> <h1> <img src="./imagenes/tierra-04.GIF"  align="middle" /> Móvil World <img src="./imagenes/tierra-04.GIF" align="middle"/></h1></center>
         <center> <p> <h3 > Bienvenidos a Móvil World</h3></p> </center>
         <ul>
             <li><a href="#"></a></li>
             <li><a href="#"></a></li>  
         </ul>  
-
         <div id="formulario">
-        <input type="submit" name="boton" value="Buscar" id="buscar" name="boton">
-             <input type="text"   id="txtbusca" name="busca" value= "<?php if (isset($clientesP->Cedula))  echo $clientesP->Cedula;   ?>" >
-             <input type="submit" value="Actualizar" id="Actualizar" name="boton">
-             <input type="submit" value="Eliminar" id="Eliminar" name="boton">
-        
-        <form id="forFormu" name="forFormu"  >
+            <input type="submit" name="boton" value="Buscar" id="buscar" >
+            <input type="text"   id="txtbusca" name="busca" value= "<?php if (isset($clientesP->Id))  echo $clientesP->Id;   ?>" >
+            <input type="submit" value="Buscar" id="buscar" name="boton"> </br>
+            <input type="button" value="Id" id="Nombre" name="id"> 
+            <input type="text"  id="txtid" name="id" value= "<?php if (isset($clientesP->Id))  echo $clientesP->Id;   ?>"> </br>
+            <input type="submit" value="Actualizar" id="Actualizar" name="boton">
+            <input type="submit" value="Eliminar" id="Eliminar" name="boton">
+            <form id="forFormu" name="forFormu" action="CapaDatos.php" method="post" >
             <fieldset>
                 <h3><legend>Ingrese datos de Registro</legend></h3>
                 <h2>
                 <section>
                     <label for="email">Email*</label> 
                     <!--En los campos obligatorios introducimos required, para que no se pueda
-                    aceptar si antes haber introducido los datos-->
-                    <input type="email" name="email" id="email" placeholder="example@example.com" 
+                    aceptar si antes haber introducido los datos
+                    en phpmyAdmin no permite type= password ni email-->
+                    <input type="text" name="email" id="email" placeholder="example@example.com" 
                            oninput="validacion('email')"  maxlength="30" required 
-                           value= "<?php if (isset($clientesP->Email))  echo $$clientesP->Email;   ?>"/>
+                           value= "<?php if (isset($clientesP->Email))  echo $clientesP->Email;   ?>"/>
                 </section>
                 <section>
                     <label for="contrasena">Contraseña*</label> 
-                    <input type="password" name="password1" id = "password1" value="" placeholder="escriba contraseña" 
-                            required
-                            value= "<?php if (isset($clientesP->Contrasena))  echo $$clientesP->Contrasena;   ?>"/>
+                    <input type="text" name="password1" id = "password1"  placeholder="escriba contraseña" 
+                            required value= "<?php if (isset($clientesP->Contrasena))  echo $clientesP->Contrasena;   ?>"/>
                 </section>
                  <section>
                     <label for="confcontrasena">Confirmar Contraseña*</label> 
-                    <input type="password" name="password2" id="password2" value="" placeholder="repita contrasena" 
-                            required />
+                    <input type="text" name="password2" id="password2"  placeholder="repita contrasena" 
+                            required value= "<?php if (isset($clientesP->ConfContrasena))  echo $clientesP->ConfContrasena;   ?>" />
                  </h2>
             </fieldset>
         
@@ -284,67 +252,63 @@ and open the template in the editor.
             <fieldset> 
                 <h3><legend>Ingrese Datos Personales</legend></h3>
                 <h2>
-                <!--<section>
-                    <label for="cliente">Tipo de cliente</label>
-                    <!--<input type="button" value="Tipo de Cliente" id="sexo" name="sexo">
-                    <select name="sexo" id="sexo" value="<?php if (isset($alumnos->Sexo)) echo $alumnos->Sexo;?>"> 
-                        <option value="1"> Empresa
-                        <option value="2"> Particular
-                    </select></br> -->
+              
 
                 </section>
                 <section>
                     <label for="cedula">Cédula*</label> 
                     <input type="text" name="cedula" id="cedula" placeholder="11111111-1" 
                             required
-                            value= "<?php if (isset($clientesP->Cedula))  echo $$clientesP->Cedula;   ?>"/>
+                            value= "<?php if (isset($clientesP->Cedula))  echo $clientesP->Cedula;   ?>"/>
                 </section>
                 <section>
                     <label for="nombre">Nombres*</label> 
                     <!--CON EL PATTERN para que permita introducir solo letras mayúsculas de la A-Z, minimo 5 y maximo 20 caracteres, 
                     y el maxlength para longitud máxima de 20 caracteres-->
-                    <input type="text" name="nombre" id="nombre" value="" placeholder="NOMBRES" 
+                    <input type="text" name="nombre" id="nombre" placeholder="NOMBRES" 
                             required pattern="([A-Z]{5,20})" maxlength="20"
-                            value= "<?php if (isset($clientesP->Nombre))  echo $$clientesP->Nombre;   ?>"/>
+                            value= "<?php if (isset($clientesP->Nombre))  echo $clientesP->Nombre;   ?>"/>
                 </section>
                 <section>
                     <label for="apellidos">Apellidos*</label> 
-                    <input type="text" name="apellidos" value="" placeholder="APELLIDOS" required pattern="([A-Z]{5,20})" 
+                    <input type="text" name="apellidos" placeholder="APELLIDOS" required pattern="([A-Z]{5,20})" 
                            maxlength="20"
-                           value= "<?php if (isset($clientesP->Apellidos))  echo $$clientesP->Apellidos;   ?>"/>
+                           value= "<?php if (isset($clientesP->Apellidos))  echo $clientesP->Apellidos;   ?>"/>
                 </section>
                 <section>
                     <label for="fijo">Teléfono Fijo</label> 
-                    <input type="text" name="fijo" placeholder="052999999"   maxlength="9"/>
-                    <!-- pattern="(/^([0-9]+){9}$/)"-->
+                    <input type="text" name="fijo" placeholder="052999999"   maxlength="9" 
+                           value= "<?php if (isset($clientesP->Tlfijo))  echo $clientesP->Tlfijo;   ?>"/>/>
+                    
                 </section>
                 <section>
                     <label for="movil">Móvil*</label> 
                     <input type="text" name="movil" placeholder="099999999" required pattern="(^([0-9]+){10}$)" maxlength="10"
-                           value= "<?php if (isset($clientesP->Telefono))  echo $$clientesP->Telefono;   ?>"/>
+                           value= "<?php if (isset($clientesP->Telefono))  echo $clientesP->Telefono;   ?>"/>
                 </section>
                 <section>
                     <label for="genero">Género</label> 
-                    <!--<input type="text" name="genero" placeholder="masculino o femenino"/>-->
-                    <select>
+                    <!--<input type="text" name="genero" placeholder="masculino o femenino"/>-->                    
+                    <select name="genero" id="genero" value="<?php if (isset($alumnos->Genero)) echo $alumnos->Genero;?>">
                         <option value="f">Femenino</option>
                         <option value="m">Masculino</option>
                     </select>
                 </section>
                 <section>
                     <label for="nacimiento">Fecha de nacimiento</label> 
-                    <input type="date" name="nacimiento" id="nacimiento" placeholder="01/01/2001" />
+                    <input type="date" name="nacimiento" id="nacimiento" placeholder="01/01/2001" 
+                            value= "<?php if (isset($clientesP->FechaNaci))  echo $clientesP->FechaNaci;   ?>"      />
                 </section>
                  <section>
                     <label for="condiciones">Términos de Uso y Condiciones</label> 
-                    <textarea name="condiciones">Tienes que aceptar todas nuestras políticas de propietarios</textarea>
+                    <textarea name="condiciones">Tienes que aceptar todas nuestras políticas de propietarios, para el buen funcionamiento, y condiciones de uso</textarea>
                 </section>
                 </h2>
                 
             </fieldset>
             <section>
                 <h3> <input type="submit" name="boton" value="Aceptar"  onclick="validarCedula(document.forms[1].cedula.value); validarCampos();"/></h3>
-                </section>
+            </section>
              
              
         </form> 
